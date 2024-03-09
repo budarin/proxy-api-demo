@@ -1,14 +1,14 @@
-type NewUser = {
+export type NewUser = {
   name: string;
   email: string;
   password: string;
 };
 
-type User = {
+export type User = {
   id: number;
 } & NewUser;
 
-type UserInfo = Omit<User, "password">;
+export type UserInfo = Omit<User, "password">;
 
 export interface API {
   getUsers(): Promise<User[]>;

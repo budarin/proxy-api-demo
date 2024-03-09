@@ -2,8 +2,9 @@ import { API } from "../api-interface";
 
 var httpMethods = {
   get: "GET",
-  post: "POST",
-  put: "PUT",
+  update: "POST",
+  change: "PATCH",
+  create: "PUT",
   delete: "DELETE",
 };
 
@@ -24,9 +25,10 @@ var getAPI = function (apiUrl: string): API {
       get: function (_, method_name: string) {
         return async (props?: Record<string, string>) => {
           const apiMethod = camelToSnake(method_name);
-          const httpMethod = apiMethod.split("_")[0].toUpperCase();
+          const httpMethod = getHttpMethod(apiMethod.split("_")[0]);
           const isGetMethod = httpMethod === "GET";
           const url = new URL(`${apiUrl}/${apiMethod}`);
+
           const options: RequestInit = {
             method: httpMethod,
             headers: { "Content-Type": "application/json" },
@@ -41,7 +43,9 @@ var getAPI = function (apiUrl: string): API {
           }
 
           const response = await fetch(url, options);
-          return response.json();
+          const result = await response.json();
+
+          return result;
         };
       },
     }
@@ -50,13 +54,10 @@ var getAPI = function (apiUrl: string): API {
 
 async function main() {
   // Создаем экземпляр API на клиенте
-  var api = getAPI("http://localhost:5000");
+  var api = getAPI("http://localhost:3000");
 
   // Вызываем методы API
   let result;
-
-  result = await api.getUsers();
-  console.log("api.getUsers()", result);
 
   result = await api.createUser({
     name: "Ivan",
@@ -67,6 +68,9 @@ async function main() {
     "api.createUser({ name: 'Ivan', email: 'ivan@domain.ru', password: '123456' })",
     result
   );
+
+  result = await api.getUsers();
+  console.log("api.getUsers()", result);
 
   result = await api.updateUser({
     id: 1,
