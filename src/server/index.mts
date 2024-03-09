@@ -33,14 +33,12 @@ app.get("/get_user", (req, res) => {
 });
 
 app.put("/create_user", (req, res) => {
-  const data = req.body;
-  const createdUser = addUser(data);
+  const createdUser = addUser(req.body);
   res.status(201).json(createdUser);
 });
 
 app.post("/update_user", (req, res) => {
-  const data = req.body;
-  const updatedUser = updateUser(data);
+  const updatedUser = updateUser(req.body);
 
   if (updatedUser) {
     res.status(200).json(updatedUser);
@@ -52,8 +50,7 @@ app.post("/update_user", (req, res) => {
 });
 
 app.delete("/delete_user", (req, res) => {
-  const data = req.body;
-  const deletedUser = deleteUser(data.id);
+  const deletedUser = deleteUser(req.body.id);
 
   if (deletedUser) {
     res.status(200).json(deletedUser);
