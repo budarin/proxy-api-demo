@@ -1,87 +1,20 @@
 import express from "express";
-import type { User, UserInfo } from "../api-interface";
+import {
+  addUser,
+  changeUserPassword,
+  deleteUser,
+  getUser,
+  updateUser,
+  users,
+} from "./usersStore.mjs";
 
 const app = express();
 const port = 3000;
 
-const users = new Map<number, User>();
-
-function getUser(id: number): UserInfo | undefined {
-  const user = users.get(id);
-
-  if (!user) {
-    return;
-  }
-
-  return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  };
-}
-
-function addUser(user: User): UserInfo | undefined {
-  const { name, email, password } = user;
-
-  if (!name || !email || !password) {
-    return;
-  }
-
-  user.id = users.size + 1;
-  users.set(user.id, { id: user.id, name, email, password });
-
-  return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  };
-}
-
-function updateUser(user: User): UserInfo | undefined {
-  if (!user.id) {
-    return;
-  }
-  users.set(user.id, user);
-
-  return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  };
-}
-
-function deleteUser(id: number): UserInfo | undefined {
-  const user = users.get(id);
-
-  if (!user) {
-    return;
-  }
-
-  users.delete(id);
-
-  return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  };
-}
-
-function changeUserPassword(
-  id: number,
-  oldPassword: string,
-  newPassword: string
-): boolean {
-  const user = users.get(id);
-
-  if (user && user.password === oldPassword) {
-    user.password = newPassword;
-    return true;
-  }
-  return false;
-}
-
 app.use(express.static("dist/client"));
 app.use(express.json());
+
+// Методы АПИ
 
 app.get("/get_users", (_, res) => {
   res.status(200).json([...users.values()]);
