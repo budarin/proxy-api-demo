@@ -17,7 +17,7 @@
     delete: "DELETE",
   };
   ```
-  - имя метода на сервере имеет snake нотацию `creteUser` -> `create_user`
+- имя метода на сервере имеет snake нотацию `creteUser` -> `create_user`
 
 Пример вызова на клиенте
 
