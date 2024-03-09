@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "es2015",
-    "lib": ["dom", "ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom"],
     "outDir": "./dist",
     "sourceMap": true,
     "strict": true,
@@ -12,6 +12,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/client/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
