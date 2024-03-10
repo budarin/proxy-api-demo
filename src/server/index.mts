@@ -17,7 +17,15 @@ app.use(express.json());
 // Методы АПИ
 
 app.get("/get_users", (_, res) => {
-  res.status(200).json([...users.values()]);
+  res.status(200).json(
+    [...users.values()].map((user) => {
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      };
+    })
+  );
 });
 
 app.get("/get_user", (req, res) => {
