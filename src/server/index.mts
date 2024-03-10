@@ -32,12 +32,12 @@ app.get("/get_user", (req, res) => {
   }
 });
 
-app.put("/create_user", (req, res) => {
+app.post("/create_user", (req, res) => {
   const createdUser = addUser(req.body);
   res.status(201).json(createdUser);
 });
 
-app.post("/update_user", (req, res) => {
+app.put("/update_user", (req, res) => {
   const updatedUser = updateUser(req.body);
 
   if (updatedUser) {
