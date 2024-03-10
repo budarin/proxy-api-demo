@@ -2,9 +2,9 @@ import { API } from "../api-interface";
 
 var httpMethods = {
   get: "GET",
-  update: "POST",
+  update: "PUT",
   change: "PATCH",
-  create: "PUT",
+  create: "POST",
   delete: "DELETE",
 };
 
