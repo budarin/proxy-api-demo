@@ -52,12 +52,12 @@ var getAPI = function (apiUrl: string): API {
 };
 
 async function main() {
-  // Создаем экземпляр API на клиенте
-  var api = getAPI("http://localhost:3000");
-
-  // Вызываем методы API
   let result;
 
+  // Создаем экземпляр API на клиенте
+  const api = getAPI("http://localhost:3000");
+
+  // Вызываем методы API
   result = await api.createUser({
     name: "Ivan",
     email: "ivan@domain.ru",
