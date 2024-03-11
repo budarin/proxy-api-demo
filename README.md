@@ -12,9 +12,9 @@
   ```ts
   const httpMethods = {
     get: "GET",
-    update: "POST",
+    create: "POST",
+    update: "PUT",
     change: "PATCH",
-    create: "PUT",
     delete: "DELETE",
   };
   ```
