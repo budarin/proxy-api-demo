@@ -43,12 +43,12 @@ app.get("/get_user", (req, res) => {
 app.post("/create_user", (req, res) => {
   const createdUser = addUser(req.body);
 
-  if (!createdUser) {
+  if (createdUser) {
+    res.status(201).json(createdUser);
+  } else {
     res.status(400).json({
       message: "Не верные данные пользователя",
     });
-  } else {
-    res.status(201).json(createdUser);
   }
 });
 
