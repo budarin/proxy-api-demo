@@ -89,7 +89,7 @@ app.patch("/change_user_password", (req, res) => {
     res.status(200).json(result);
   } else {
     res.status(400).json({
-      message: "Пользователь с таким id не найден",
+      message: "Не удалось изменить пароль",
     });
   }
 });
