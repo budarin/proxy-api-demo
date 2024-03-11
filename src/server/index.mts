@@ -47,9 +47,9 @@ app.post("/create_user", (req, res) => {
     res.status(400).json({
       message: "Не верные данные пользователя",
     });
+  } else {
+    res.status(201).json(createdUser);
   }
-
-  res.status(201).json(createdUser);
 });
 
 app.put("/update_user", (req, res) => {
