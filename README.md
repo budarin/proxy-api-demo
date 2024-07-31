@@ -42,7 +42,7 @@ api.changeUserPassword({
   oldPassword: "123456",
   newPassword: "new password",
 });
-// => POST http://domain/api/change_user_password
+// => PATCH http://domain/api/change_user_password
 // body: { id: 1, oldPassword: "123456", newPassword: "new password" }
 
 api.deleteUser({ id: 1 });
