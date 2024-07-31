@@ -30,11 +30,11 @@ api.getUser({ id: 1 });
 // => GET http://domain/api/get_user?id=1
 
 api.createUser({ name: "Ivan", email: "ivan@domain.ru", password: "123456" });
-// => PUT http://domain/api/create_user
+// => POST http://domain/api/create_user
 // body: { name: "Ivan", email: "ivan@domain.ru", password: "123456" }
 
 api.updateUser({ id: 1, name: "Ivan", email: "ivan@new-domain.ru" });
-// => POST http://domain/api/update_user
+// => PUT http://domain/api/update_user
 // body: { id: 1, name: "Ivan", email: "ivan@new-domain.ru" }
 
 api.changeUserPassword({
